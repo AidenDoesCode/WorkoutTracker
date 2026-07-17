@@ -1,0 +1,82 @@
+:root {
+    --corinthian-pink: #E8998D;
+    --warm-gray: #8C7B75;
+    --pale-lemon: #F5E6A8;
+    --cream: #FAF6EE;
+    --deep-brown: #4A3B35;
+    --pink-tint: #F7E9E4;
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--deep-brown);
+    font-family: sans-serif;
+    padding: 24px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    margin: 24px 0;
+}
+
+.workout-group,
+.recipe-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.workout-card,
+.recipe-card {
+    list-style: none;
+    padding: 16px 24px;
+    border-radius: 8px;
+    border: 1px solid var(--warm-gray);
+    min-width: 200px;
+}
+
+.workout-card {
+    background-color: var(--pink-tint);
+}
+
+.recipe-card {
+    background-color: var(--pale-lemon);
+}
+
+.workout-card li,
+.recipe-card li {
+    padding: 4px 0;
+}
+
+form.workout-card,
+form.recipe-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+input[type="text"] {
+    padding: 6px 10px;
+    border: 1px solid var(--warm-gray);
+    border-radius: 6px;
+}
+
+button {
+    background-color: var(--corinthian-pink);
+    color: var(--cream);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--warm-gray);
+}

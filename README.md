@@ -2,6 +2,34 @@
 
 A backend API for logging workouts and recipes — built with ASP.NET Core and EF Core, backed by SQLite. Started as a first full-stack-style project, moving beyond console apps into a real HTTP API with database persistence.
 
+## Project structure
+
+```
+.
+├── backend/          # ASP.NET Core minimal API (EF Core + SQLite)
+│   ├── Program.cs
+│   ├── AppDbContext.cs
+│   ├── Workout.cs
+│   ├── Recipe.cs
+│   ├── workoutApp.csproj
+│   ├── workoutApp.http
+│   ├── appsettings.json
+│   ├── appsettings.Development.json
+│   └── workouts.db
+└── frontend/         # Static HTML/CSS
+    ├── index.html
+    └── style.css
+```
+
+Run the API from inside `backend/` (the SQLite connection string `Data Source=workouts.db` is relative to that folder, so this keeps the existing database working without any code changes):
+
+```bash
+cd backend
+dotnet run
+```
+
+Open `frontend/index.html` directly in a browser, or serve it with any static file server. It isn't wired to the API yet (no `fetch` calls or `UseStaticFiles`), so moving it doesn't affect the backend at all.
+
 ## What it does
 
 Full CRUD for two resources: workouts and recipes.
