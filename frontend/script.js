@@ -1,3 +1,5 @@
+
+
 //creates a workout object
 function createWorkout(exerciseName, sets, reps, weight) {
     return { exerciseName, sets, reps, weight };
@@ -8,6 +10,21 @@ function createRecipe(recipeName) {
     return { recipeName };
 }
 
+function addRecipeHtml(recipe)
+{
+    const newItem = document.createElement("li");
+    newItem.textContent = recipe.recipeName;
+    recipeList.appendChild(newItem);
+}
+
+function addWorkoutHtml(workout)
+{
+    const newItem = document.createElement("li");
+    newItem.textContent = workout.exerciseName;
+    workoutList.appendChild(newItem);
+}
+
+//#region POST
 async function addWorkoutToServer(workout) {
     const workoutResponse = await fetch("http://localhost:5000/workouts", {
         method: "POST",
@@ -17,6 +34,7 @@ async function addWorkoutToServer(workout) {
     const data = await workoutResponse.json();
     console.log(data);
 }
+
 
 async function addRecipeToServer(recipe)
 {
@@ -28,7 +46,40 @@ async function addRecipeToServer(recipe)
     });
     const data = await recipeResponse.json();
 }
+//#endregion
 
+
+//#region GET
+
+//GET REQUEST TO GET ALL THE RECIPES FROM BACKEND
+async function getAllRecipes() {
+    const recipesResponse = await fetch("http://localhost:5000/recipes");
+    const data = await recipesResponse.json();
+
+    //clear existing entries
+    recipeList.innerHTML = "";
+
+    for (const recipe of data) {
+        addRecipeHtml(recipe);
+    }
+}
+
+async function getAllWorkouts()
+{
+    const workoutsResponse = await fetch("http://localhost:5000/workouts");
+    const data = await workoutsResponse.json();
+
+    //clear existing entries
+    workoutList.innerHTML = "";
+
+    for (const workout of data)
+    {
+        addWorkoutHtml(workout);
+    }
+}
+
+
+//#endregion
 
 //workouts and recipes array
 let workouts = [];
@@ -51,13 +102,12 @@ workoutButton.addEventListener("click", async (event) => {
 
     await addWorkoutToServer(newWorkout);
 
-    const newItem = document.createElement("li");
-    newItem.textContent = newWorkout.exerciseName;
-    workoutList.appendChild(newItem);
+    addWorkoutHtml(newWorkout)
 });
 
 const recipeButton = document.querySelector("#add-recipe-btn");
 recipeButton.addEventListener("click", async (event) => {
+    console.log("HANDLER STARTED");
     event.preventDefault();
 
     console.log("recipe button was clicked!");
@@ -69,8 +119,11 @@ recipeButton.addEventListener("click", async (event) => {
 
     await addRecipeToServer(newRecipe);
 
-    const newItem = document.createElement("li");
-    newItem.textContent = newRecipe.recipeName;
-    recipeList.appendChild(newItem);
+    addRecipeHtml(newRecipe);
 });
 //#endregion
+
+
+//call lists to get printed on startup
+getAllRecipes();
+getAllWorkouts();
