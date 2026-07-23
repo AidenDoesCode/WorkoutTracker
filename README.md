@@ -1,6 +1,6 @@
 # Workout Tracker
 
-A full-stack app for logging workouts and recipes — an ASP.NET Core + EF Core + SQLite backend, paired with a vanilla HTML/CSS/JavaScript frontend that talks to it over `fetch()`. Started as a first backend project, then extended into a first full-stack project as a bridge toward React.
+A full-stack app for logging workouts and recipes — an ASP.NET Core + EF Core + SQLite backend, paired with a vanilla HTML/CSS/JavaScript frontend that talks to it over `fetch()`. Started as a first backend project, then extended into a full-stack project as a bridge toward React.
 
 ## Project structure
 
